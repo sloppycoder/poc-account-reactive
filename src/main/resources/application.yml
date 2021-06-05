@@ -1,2 +1,11 @@
 account:
   dummy: true
+
+# tracing settings
+quarkus:
+  log:
+    console:
+      format: "%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n"
+#     uncomment jaeger server-name will trigger sending trace info to jaeger endpoint
+#     jaeger:
+#       server-name: account-reactive

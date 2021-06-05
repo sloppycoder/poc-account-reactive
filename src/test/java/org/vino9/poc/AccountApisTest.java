@@ -13,4 +13,9 @@ public class AccountApisTest {
   public void swagger_ui_is_available() {
     given().when().get("/swagger-ui").then().statusCode(200).body(containsString("Swagger"));
   }
+
+  @Test
+  public void prometheus_metrics_is_available() {
+    given().when().get("/q/metrics").then().statusCode(200).body(containsString("jvm"));
+  }
 }
