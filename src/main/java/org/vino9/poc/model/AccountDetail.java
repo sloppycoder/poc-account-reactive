@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@javax.annotation.Generated(
-    value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen",
-    date = "2021-06-05T14:09:03.284Z[GMT]")
 public class AccountDetail {
   private String accountNo = null;
   private String country = null;

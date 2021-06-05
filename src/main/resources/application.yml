@@ -3,6 +3,12 @@ account:
 
 # tracing settings
 quarkus:
+  datasource:
+    db-kind: postgresql
+    username: pocuser
+    password: password
+    reactive:
+      url: postgresql://gf63.local:5432/poc
   log:
     console:
       format: "%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n"

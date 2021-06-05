@@ -8,9 +8,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
-@javax.annotation.Generated(
-    value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen",
-    date = "2021-06-05T14:09:03.284Z[GMT]")
 public class Balance {
   private BigDecimal available = null;
   private BigDecimal ledger = null;

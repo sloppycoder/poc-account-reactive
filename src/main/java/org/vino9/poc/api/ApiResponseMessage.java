@@ -3,9 +3,6 @@ package org.vino9.poc.api;
 import javax.xml.bind.annotation.XmlTransient;
 
 @javax.xml.bind.annotation.XmlRootElement
-@javax.annotation.Generated(
-    value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen",
-    date = "2021-06-05T14:09:03.284Z[GMT]")
 public class ApiResponseMessage {
   public static final int ERROR = 1;
   public static final int WARNING = 2;
