@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 @QuarkusTest
 class AccountApisTest {
@@ -18,4 +19,15 @@ class AccountApisTest {
   void prometheus_metrics_is_available() {
     given().when().get("/q/metrics").then().statusCode(200).body(containsString("jvm"));
   }
+
+  @Test
+  void legit_account_can_be_returned() {
+    given().when().get("/accounts/11223344").then().statusCode(200).body("currency", equalTo("SGD"));
+  }
+
+  @Test
+  void unknown_account_returns_not_found() {
+    given().when().get("/accounts/8005551212").then().statusCode(404);
+  }
+
 }
