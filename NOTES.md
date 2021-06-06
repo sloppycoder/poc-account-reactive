@@ -22,6 +22,8 @@
 
 ### Issues
 1. swagger generator code is not usable as is. needs some tweaking. Probably need to create custom template.
+2. generated Quarkus pom.xml for uses swagger 3 annotation, but openapi-generator insists on using swagger 2 annotation. swapping out for swagger2 annotation seems ok but shows weird schemas in swagger-ui. this can probably be solved by using custom mustache template for openapi-generator or switch to swagger-generator (once I figure out how to tell it skip genearting some weird files.)
+
 
 
 ### appendices
