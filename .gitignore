@@ -41,3 +41,5 @@ nb-configuration.xml
 # openapi generator junk
 .openapi-generator-ignore
 .openapi-generator/
+.swagger-codegen-ignore
+.swagger-codegen/
