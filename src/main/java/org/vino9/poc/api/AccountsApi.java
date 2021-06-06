@@ -1,5 +1,6 @@
 package org.vino9.poc.api;
 
+import io.smallrye.mutiny.Uni;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -38,11 +39,11 @@ public class AccountsApi {
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
         @ApiResponse(responseCode = "401", description = "access denied")
       })
-  public Response getAccounts(
+  public Uni<Response> getAccountDetail(
       @PathParam("id") String id,
       @QueryParam("balanceDate") String balanceDate,
       @Context SecurityContext securityContext)
       throws NotFoundException {
-    return service.getAccounts(id, balanceDate, securityContext);
+    return service.getAccountDetail(id, balanceDate, securityContext);
   }
 }

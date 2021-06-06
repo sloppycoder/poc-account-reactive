@@ -1,9 +1,11 @@
 package org.vino9.poc.api;
 
+import io.smallrye.mutiny.Uni;
+
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 public interface AccountsApiService {
-  Response getAccounts(String id, String balanceDate, SecurityContext securityContext)
+  Uni<Response> getAccountDetail(String id, String balanceDate, SecurityContext securityContext)
       throws NotFoundException;
 }
