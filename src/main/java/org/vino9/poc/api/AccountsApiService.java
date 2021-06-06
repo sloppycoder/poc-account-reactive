@@ -1,5 +1,6 @@
 package org.vino9.poc.api;
 
+import io.smallrye.mutiny.Uni;
 import org.vino9.poc.api.*;
 import org.vino9.poc.model.*;
 
@@ -16,6 +17,6 @@ import javax.ws.rs.core.SecurityContext;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen")
 public interface AccountsApiService {
-      Response getAccountDetail(String id,SecurityContext securityContext)
+      Uni<Response> getAccountDetail(String id, SecurityContext securityContext)
       throws NotFoundException;
 }
