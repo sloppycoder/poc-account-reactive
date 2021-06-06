@@ -32,18 +32,17 @@
         <defaultGoal>compile</defaultGoal>
         <plugins>
             <plugin>
-                <groupId>io.swagger.codegen.v3</groupId>
-                <artifactId>swagger-codegen-maven-plugin</artifactId>
-                <version>3.0.26</version>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>${openapi-generator-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <language>java</language>
                             <inputSpec>${project.basedir}/accounts-api.yaml</inputSpec>
-                            <library>resteasy</library>
+                            <generatorName>jaxrs-resteasy</generatorName>
                             <configOptions>
                                 <sourceFolder>src/main/java</sourceFolder>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
@@ -51,18 +50,13 @@
                                 <serializableModel>true</serializableModel>
                                 <java8>true</java8>
                                 <dateLibrary>java8</dateLibrary>
-                                <skipDefaultInterface>true</skipDefaultInterface>
-                                <interfaceOnly>true</interfaceOnly>
                             </configOptions>
                             <output>${project.basedir}</output>
                             <modelPackage>org.vino9.poc.model</modelPackage>
                             <apiPackage>org.vino9.poc.api</apiPackage>
-                            <generateApiDocumentation>false</generateApiDocumentation>
-                            <generateModelDocumentation>false</generateModelDocumentation>
-                            <generateApis>true</generateApis>
-                            <generateApiTests>false</generateApiTests>
                             <generateSupportingFiles>true</generateSupportingFiles>
-                            <supportingFilesToGenerate>NotFoundException.java,ApiException.java</supportingFilesToGenerate>
+                            <supportingFilesToGenerate>NotFoundException.java,ApiException.java
+                            </supportingFilesToGenerate>
                         </configuration>
                     </execution>
                 </executions>
