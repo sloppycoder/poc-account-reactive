@@ -41,7 +41,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/accounts-api.yaml</inputSpec>
+                            <inputSpec>${project.basedir}/schema/accounts-api.yaml</inputSpec>
                             <generatorName>jaxrs-resteasy</generatorName>
                             <configOptions>
                                 <sourceFolder>src/main/java</sourceFolder>
@@ -57,6 +57,7 @@
                             <generateSupportingFiles>true</generateSupportingFiles>
                             <supportingFilesToGenerate>NotFoundException.java,ApiException.java
                             </supportingFilesToGenerate>
+                            <skipOverwrite>false</skipOverwrite>
                         </configuration>
                     </execution>
                 </executions>
