@@ -21,7 +21,6 @@ public class AccountDetailRepository {
   @Inject PgPool client;
 
   public Uni<AccountDetail> findByAccountNo(String accountNo) {
-    log.infof("retrieving account %s from database", accountNo);
     return client
         .preparedQuery(SQL_FIND_ACCOUNT_BY_ID)
         .execute(Tuple.of(accountNo))

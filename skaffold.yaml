@@ -1,0 +1,20 @@
+apiVersion: skaffold/v2beta2
+kind: Config
+metadata:
+  name: accounts-reactive
+build:
+  artifacts:
+    - image: gcr.io/vino9-276317/accounts
+      custom:
+        buildCommand: ./build.sh
+        dependencies:
+          paths:
+            - src/main/java
+            - src/main/resources
+  local:
+    push: false
+
+deploy:
+  kustomize:
+    paths:
+      - k8s/envs/minikube

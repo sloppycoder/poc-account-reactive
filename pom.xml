@@ -84,11 +84,6 @@
             <artifactId>swagger-annotations</artifactId>
             <version>1.6.2</version>
         </dependency>
-        <!-- k8s related support -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-kubernetes-config</artifactId>
-        </dependency>
         <!-- database migration, jdbc driver is only used by flyway -->
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -99,6 +94,7 @@
             <artifactId>quarkus-jdbc-postgresql</artifactId>
         </dependency>
         <!-- build related  -->
+        <!-- jib combined with skaffold makes good dev experience -->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-container-image-jib</artifactId>
@@ -121,7 +117,6 @@
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>postgresql</artifactId>
-<!--            <version>1.15.3</version>-->
             <scope>test</scope>
         </dependency>
     </dependencies>

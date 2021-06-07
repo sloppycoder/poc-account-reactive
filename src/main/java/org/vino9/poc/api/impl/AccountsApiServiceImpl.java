@@ -1,6 +1,7 @@
 package org.vino9.poc.api.impl;
 
 import io.smallrye.mutiny.Uni;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 import org.vino9.poc.api.AccountsApiService;
 import org.vino9.poc.api.NotFoundException;
@@ -16,9 +17,15 @@ public class AccountsApiServiceImpl implements AccountsApiService {
   @Inject Logger log;
   @Inject AccountDetailRepository repository;
 
+  @ConfigProperty(name="quarkus.datasource.reactive.url")
+  String url; // to show whether reading config from k8s config map works or not
+
+  @ConfigProperty(name="quarkus.datasource.username")
+  String user;
+
   public Uni<Response> getAccountDetail(String accountNo, SecurityContext securityContext)
       throws NotFoundException {
-    log.infof("retriving account detail for %s", accountNo);
+    log.infof("retrieving account detail for %s from database %s as user %s", accountNo, url, user);
     return repository
         .findByAccountNo(accountNo)
         .onItem()
