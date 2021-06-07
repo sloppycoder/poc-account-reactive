@@ -63,5 +63,3 @@ At the moment the async database support is limited to DB2, MySQL and PostgreSQL
 4. Implement the business logic in ```AccountsApiServiceImpl``` classes.
 
 ## To Dos
-1. Switch to [reactive hibernate](https://github.com/hibernate/hibernate-reactive) for a cleaner
-2. Use MapStruct to map database entity and model class.
