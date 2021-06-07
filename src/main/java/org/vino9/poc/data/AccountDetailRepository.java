@@ -4,7 +4,6 @@ import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.pgclient.PgPool;
 import io.vertx.mutiny.sqlclient.RowSet;
 import io.vertx.mutiny.sqlclient.Tuple;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.jboss.logging.Logger;
 import org.vino9.poc.mapper.RowToModelMapper;
 import org.vino9.poc.model.AccountDetail;
@@ -21,11 +20,7 @@ public class AccountDetailRepository {
 
   @Inject PgPool client;
 
-  @ConfigProperty(name="quarkus.datasource.reactive.url")
-  String url; // to show whether reading config from k8s config map works or not
-
   public Uni<AccountDetail> findByAccountNo(String accountNo) {
-    log.infof("retrieving account %s from database %s", accountNo, url);
     return client
         .preparedQuery(SQL_FIND_ACCOUNT_BY_ID)
         .execute(Tuple.of(accountNo))

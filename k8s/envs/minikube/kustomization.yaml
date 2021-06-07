@@ -1,16 +1,14 @@
 resources:
   - ../../base
+  - postgres-svc.yaml
 
 namespace: default
 
-patchesJson6902:
-  - target:
-      group: rbac.authorization.k8s.io
-      version: v1
-      kind: RoleBinding
-      name: default
-    patch: |-
-      - op: replace
-        path: /subjects/0/namespace
-        value: "default"
+generatorOptions:
+  disableNameSuffixHash: true
 
+secretGenerator:
+  - name: accounts-secret
+    files:
+      - props.txt
+# for some reason the content props.txt cannot be inline using literal, the new line will always get removed

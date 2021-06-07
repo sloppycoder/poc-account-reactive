@@ -21,9 +21,17 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
-          env:
-            - name: JAVA_OPTIONS
-              value: "-Dquarkus.kubernetes-config.enabled=true -Dquarkus.kubernetes-config.secrets.enabled=true"
+          volumeMounts:
+            - name: secret
+              mountPath: "./work/config"
+              readOnly: true
+      volumes:
+        - name: secret
+          secret:
+            secretName: accounts-secret
+            items:
+              - key: props.txt
+                path: application.properties
 ---
 apiVersion: v1
 kind: Service
