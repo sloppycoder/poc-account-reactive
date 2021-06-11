@@ -41,10 +41,10 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/schema/accounts-api.yaml</inputSpec>
+                            <inputSpec>${project.basedir}/accounts-api.yaml</inputSpec>
                             <generatorName>jaxrs-resteasy</generatorName>
                             <configOptions>
-                                <sourceFolder>src/main/java</sourceFolder>
+                                <sourceFolder>../src/main/java</sourceFolder>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
                                 <interfaceOnly>true</interfaceOnly>
                                 <serializableModel>true</serializableModel>
@@ -54,9 +54,7 @@
                             <output>${project.basedir}</output>
                             <modelPackage>org.vino9.poc.model</modelPackage>
                             <apiPackage>org.vino9.poc.api</apiPackage>
-                            <generateSupportingFiles>true</generateSupportingFiles>
-                            <supportingFilesToGenerate>NotFoundException.java,ApiException.java
-                            </supportingFilesToGenerate>
+                            <generateSupportingFiles>false</generateSupportingFiles>
                             <skipOverwrite>false</skipOverwrite>
                         </configuration>
                     </execution>

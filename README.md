@@ -58,7 +58,7 @@ At the moment the async database support is limited to DB2, MySQL and PostgreSQL
 
 ## To add new features to the API
 1. Modify the [schema file](./schema/accounts-api.yaml)
-2. Run ```./mvnw -f genapi.xml```. This step uses openapi-generator to generate new interfaces and models. It overwrites existing files.
+2. Run ```cd schema ; ./gen.sh```. This step uses openapi-generator to generate new interfaces and models. It overwrites existing files.
 3. Tweak the ```AccountsApi``` and ```AccountsApiService``` classes.
 4. Implement the business logic in ```AccountsApiServiceImpl``` classes.
 
