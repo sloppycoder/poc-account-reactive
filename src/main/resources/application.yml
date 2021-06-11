@@ -18,6 +18,8 @@ quarkus:
     baseline-on-migrate: false # setup to true to use a new schema
   jacoco:
     excludes: "**/model/*.class"
+  http:
+    test-port: 0
 #     uncomment jaeger server-name will trigger sending trace info to jaeger endpoint
 #     jaeger:
 #       server-name: account-reactive

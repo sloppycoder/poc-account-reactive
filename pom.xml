@@ -60,6 +60,12 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-context-propagation</artifactId>
         </dependency>
+        <!-- health probes -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-health</artifactId>
+        </dependency>
+
         <!-- observability -->
         <dependency>
             <groupId>io.quarkus</groupId>
