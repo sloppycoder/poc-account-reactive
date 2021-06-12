@@ -48,7 +48,7 @@ metadata:
   labels:
     app: accounts
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: accounts
   ports:
