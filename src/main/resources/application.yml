@@ -1,15 +1,10 @@
-account:
-  dummy: true
-
 quarkus:
   datasource:
     db-kind: postgresql
-    username: pocuser
-    password: password
-    jdbc:
-      url: jdbc:${quarkus.datasource.reactive.url}
-    reactive:
-      url: postgresql://gf63.local:5432/poc
+    metrics:
+      enabled: true
+    devservices:
+      image-name: postgres:12.7
   log:
     console:
       format: "%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n"
@@ -23,3 +18,14 @@ quarkus:
 #     uncomment jaeger server-name will trigger sending trace info to jaeger endpoint
 #     jaeger:
 #       server-name: account-reactive
+
+"%demo":
+  quarkus:
+    datasource:
+      db-kind: postgresql
+      username: pocuser
+      password: password
+      jdbc:
+        url: jdbc:postgresql://192.168.20.71:5432/poc
+      reactive:
+        url: postgresql://192.168.20.71:5432/poc
