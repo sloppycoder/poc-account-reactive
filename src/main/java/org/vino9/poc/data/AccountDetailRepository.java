@@ -18,7 +18,7 @@ public class AccountDetailRepository {
 
     private static final String SQL_RANDOM_ACCOUNT =
             "SELECT $1, currency, country, branch_code, pg_sleep(delay) "
-            + "FROM accounts OFFSET floor(random() * (SELECT COUNT(*)  FROM accounts))";
+            + "FROM accounts OFFSET floor(random() * (SELECT COUNT(*)  FROM accounts)) LIMIT 1";
 
     @Inject
     Logger log;
