@@ -4,7 +4,6 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import io.quarkus.test.junit.QuarkusTest;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
@@ -34,7 +33,6 @@ class AccountApisTest {
     }
 
     @Test
-    @Disabled("test data can cause this to timeout")
     void random_account_can_be_returned() {
         // @formatter:off
         given()
