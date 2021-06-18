@@ -1,48 +1,42 @@
 package org.vino9.poc.api;
 
 import io.smallrye.mutiny.Uni;
-import org.vino9.poc.model.AccountDetail;
-
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.vino9.poc.model.AccountDetail;
 
-@Path("/accounts/{id}")
-@io.swagger.annotations.Api(description = "the accounts API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen")
+@Path("/accounts")
+
 public class AccountsApi {
 
-  @Inject AccountsApiService service;
+    @Inject
+    AccountsApiService service;
 
-  @GET
-  @Produces({"application/json"})
-  @io.swagger.annotations.ApiOperation(
-      value = "get account for account number",
-      notes = "Get Account Details for one account",
-      response = AccountDetail.class,
-      responseContainer = "List",
-      tags = {})
-  @io.swagger.annotations.ApiResponses(
-      value = {
-        @io.swagger.annotations.ApiResponse(
-            code = 200,
-            message = "search results matching criteria",
-            response = AccountDetail.class,
-            responseContainer = "List"),
-        @io.swagger.annotations.ApiResponse(
-            code = 400,
-            message = "bad input parameter",
-            response = Void.class),
-        @io.swagger.annotations.ApiResponse(
-            code = 401,
-            message = "access denied",
-            response = Void.class)
-      })
-  public Uni<Response> getAccountDetail(
-      @PathParam("id") String id, @Context SecurityContext securityContext)
-      throws NotFoundException {
-    return service.getAccountDetail(id, securityContext);
-  }
+    @GET
+    @Path("/{id}")
+
+    @Produces({"application/json"})
+    @Operation(summary = "get account for account number", description = "Get Account Details for one account")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = AccountDetail.class)))),
+
+        @ApiResponse(responseCode = "400", description = "bad input parameter"),
+
+        @ApiResponse(responseCode = "401", description = "access denied")})
+    public Uni<Response> getAccountDetail(@PathParam("id") String id,
+        @Context SecurityContext securityContext) {
+        return service.getAccountDetail(id, securityContext);
+    }
 }
