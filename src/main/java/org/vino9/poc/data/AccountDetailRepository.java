@@ -14,7 +14,11 @@ import org.vino9.poc.model.AccountDetail;
 public class AccountDetailRepository {
 
     private static final String SQL_FIND_ACCOUNT_BY_ID =
-        "SELECT account_no, currency, country, branch_code, pg_sleep(delay) FROM accounts WHERE ";
+        "SELECT account_no, currency, country, branch_code, pg_sleep(delay) FROM accounts WHERE account_no = $1";
+
+    private static final String SQL_RANDOM_ACCOUNT =
+            "SELECT $1, currency, country, branch_code, pg_sleep(delay) "
+            + "FROM accounts OFFSET floor(random() * (SELECT COUNT(*)  FROM accounts))";
 
     @Inject
     Logger log;
@@ -23,12 +27,12 @@ public class AccountDetailRepository {
     PgPool client;
 
     public Uni<AccountDetail> findByAccountNo(String accountNo) {
-        var locator =
-            "random".equalsIgnoreCase(accountNo) ? " id = random_index($1)" : " account_no = $1";
+        var sql =  "random".equalsIgnoreCase(accountNo)
+            ? SQL_RANDOM_ACCOUNT
+            : SQL_FIND_ACCOUNT_BY_ID;
         return client
-            .preparedQuery(SQL_FIND_ACCOUNT_BY_ID + locator)
+            .preparedQuery(sql)
             .execute(Tuple.of(accountNo))
-            .onItem().invoke(rs -> log.infof("%s returned %d rows", locator, rs.rowCount()))
             .onItem().transform(RowSet::iterator)
             .onItem().transform(
                 iterator -> iterator.hasNext()
