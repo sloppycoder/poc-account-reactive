@@ -43,3 +43,4 @@ nb-configuration.xml
 .openapi-generator/
 .swagger-codegen-ignore
 .swagger-codegen/
+schema/out

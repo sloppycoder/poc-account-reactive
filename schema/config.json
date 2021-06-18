@@ -1,0 +1,25 @@
+{
+  "groupId": "org.vino9.poc",
+  "artifactId": "accounts",
+  "artifactVersion": "1.0.0-SNAPSHOT",
+
+  "sourceFolder": "src/main/java",
+
+  "modelPackage": "org.vino9.poc.model",
+  "apiPackage": "org.vino9.poc.api",
+  "invokerPackage": "org.vino9.poc.api.impl",
+
+  "lang": "jaxrs-resteasy",
+
+  "dateLibrary": "java8",
+  "useBeanValidation": true,
+  "java8": true,
+  "serializationLibrary": "jackson",
+
+  "generateApi": true,
+  "generateApiTests": false,
+  "generateModelTests": false,
+  "generateApiDocumentation": false,
+  "generateModelDocumentation": false,
+  "hideGenerationTimestamp": true
+}
