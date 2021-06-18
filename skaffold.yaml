@@ -18,3 +18,12 @@ deploy:
   kustomize:
     paths:
       - k8s/envs/minikube
+
+profiles:
+  - name: gcpkube
+    activation:
+      - env: USER=guru_lin_gmail_com
+    deploy:
+      kustomize:
+        paths:
+          - k8s/envs/gcpkube

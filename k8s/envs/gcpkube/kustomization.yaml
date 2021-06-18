@@ -1,0 +1,17 @@
+resources:
+  - ../../base
+
+namespace: default
+
+replicas:
+  - name: accounts
+    count: 2
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: accounts-secret
+    files:
+      - props.txt
+# for some reason the content props.txt cannot be inline using literal, the new line will always get removed
