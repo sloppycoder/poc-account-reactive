@@ -33,6 +33,11 @@ spec:
             - name: secret
               mountPath: "./work/config"
               readOnly: true
+          resources:
+            limits:
+              cpu: "1"
+            requests:
+              cpu: "0.25"
       volumes:
         - name: secret
           secret:
