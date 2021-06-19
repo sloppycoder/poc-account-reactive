@@ -7,8 +7,6 @@ quarkus:
     db-kind: postgresql
     jdbc:
       enable-metrics: true
-    reactive:
-      max-size: 20
   flyway:
     migrate-at-start: true
     baseline-on-migrate: true

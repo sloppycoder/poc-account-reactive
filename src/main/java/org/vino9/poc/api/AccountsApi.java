@@ -1,6 +1,6 @@
 package org.vino9.poc.api;
 
-import io.smallrye.mutiny.Uni;
+import io.smallrye.common.annotation.Blocking;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -35,7 +35,8 @@ public class AccountsApi {
         @ApiResponse(responseCode = "400", description = "bad input parameter"),
 
         @ApiResponse(responseCode = "401", description = "access denied")})
-    public Uni<Response> getAccountDetail(@PathParam("id") String id,
+    @Blocking
+    public Response getAccountDetail(@PathParam("id") String id,
         @Context SecurityContext securityContext) {
         return service.getAccountDetail(id, securityContext);
     }
