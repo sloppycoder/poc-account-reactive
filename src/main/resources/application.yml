@@ -1,17 +1,4 @@
 quarkus:
-  datasource:
-    devservices:
-      image-name: docker.io/postgres:12.7
-    metrics:
-      enabled: true
-    db-kind: postgresql
-    jdbc:
-      enable-metrics: true
-    reactive:
-      max-size: 20
-  flyway:
-    migrate-at-start: true
-    baseline-on-migrate: true
   log:
     console:
       format: "%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n"
@@ -24,3 +11,17 @@ quarkus:
     test-port: 0
   vertx:
     worker-pool-size: 50
+  mongodb:
+    credentials:
+      username: dev
+      password: dev
+      auth-mechanism: SCRAM-SHA-1
+      auth-source: dev
+
+    connection-string: mongodb://localhost:27017
+    # max-pool-size: 300
+    metrics:
+      enabled: true
+
+app:
+  database: dev
