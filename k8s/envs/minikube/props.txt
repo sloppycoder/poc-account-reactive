@@ -2,3 +2,4 @@ quarkus.datasource.reactive.url=postgresql://192.168.39.1:5432/poc
 quarkus.datasource.jdbc.url=jdbc:postgresql://192.168.39.1:5432/poc
 quarkus.datasource.username=pocuser
 quarkus.datasource.password=password
+quarkus.log.level=WARN

@@ -17,6 +17,8 @@ quarkus:
       format: "%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n"
   jacoco:
     excludes: "**/model/*.class"
+  shutdown:
+    timeout: 30
   http:
     port: 8080
     test-port: 0

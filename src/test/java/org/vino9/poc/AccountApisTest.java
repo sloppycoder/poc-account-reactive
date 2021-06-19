@@ -37,10 +37,10 @@ class AccountApisTest {
         // @formatter:off
         given()
             .when()
-            .get("/accounts/random")
+                .get("/accounts/random")
             .then()
-            .statusCode(200)
-            .body("currency", equalTo("SGD"));
+                .statusCode(200)
+                .body("currency", equalTo("SGD"));
         // @formatter:on
     }
 }
