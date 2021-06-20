@@ -24,13 +24,15 @@ public class AccountDetailRepository {
     @ConfigProperty(name = "app.database")
     String database;
 
+    @ConfigProperty(name = "app.total-accounts", defaultValue="10")
+    int totalAccounts;
+
     SecureRandom random = new SecureRandom();
 
     public Uni<AccountDetail> findByAccountNo(String accountNo) {
         Bson queryFilter;
         if ("random".equalsIgnoreCase(accountNo)) {
-            //random.nextInt()
-            queryFilter = eq("id", 10);
+            queryFilter = eq("id", random.nextInt(totalAccounts));
         } else {
             queryFilter = eq("account_num", accountNo);
         }

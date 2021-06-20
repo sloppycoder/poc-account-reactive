@@ -25,3 +25,4 @@ quarkus:
 
 app:
   database: dev
+  total-accounts: 10
