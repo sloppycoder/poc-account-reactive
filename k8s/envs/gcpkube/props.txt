@@ -3,4 +3,4 @@ quarkus.mongodb.credentials.username: dev
 quarkus.mongodb.credentials.password: dev
 quarkus.mongodb.credentials.auth-mechanism: SCRAM-SHA-1
 quarkus.mongodb.credentials.auth-source: dev
-quarkus.mongodb."connection-string": mongodb://192.168.39.1:27017
+quarkus.mongodb.connection-string: mongodb://192.168.39.1:27017
