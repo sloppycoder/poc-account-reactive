@@ -1,11 +1,13 @@
 package org.vino9.poc.data;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import io.vertx.mutiny.pgclient.PgPool;
 import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Duration;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.sql.DataSource;
@@ -27,6 +29,9 @@ public class AccountDetailRepository {
 
     @Inject
     DataSource dataSource;
+
+    @Inject
+    MeterRegistry registry;
 
     SecureRandom random = new SecureRandom();
 
@@ -57,11 +62,19 @@ public class AccountDetailRepository {
             } else {
                 statement.setString(1, accountNo);
             }
+
+            var start = System.currentTimeMillis();
             resultset = statement.executeQuery();
+
+            var timer = registry.timer("app.db.query.duration", "sql1");
+            timer.record(Duration.ofMillis(System.currentTimeMillis() - start));
+            registry.counter("app.db.success.count").increment();
+
             if (resultset.next()) {
                 return RowToModelMapper.rowToAccountDetail(resultset);
             }
         } catch (SQLException ex) {
+            registry.counter("app.db.failure.count").increment();
             log.infof(ex, "error trying to retrieve data from database");
         } finally {
             // Ugly JDBC API!!!
