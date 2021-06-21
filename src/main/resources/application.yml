@@ -13,6 +13,14 @@ quarkus:
   log:
     console:
       format: "%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n"
+  cache:
+    caffeine:
+      accounts:
+        initial-capacity: 1000
+        maximum-size: 10000
+        # see https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html
+        # duration format
+        expire-after-write: PT5M
   jacoco:
     excludes: "**/model/*.class"
   shutdown:

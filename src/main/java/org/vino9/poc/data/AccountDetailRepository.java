@@ -1,5 +1,7 @@
 package org.vino9.poc.data;
 
+import io.quarkus.cache.CacheKey;
+import io.quarkus.cache.CacheResult;
 import io.vertx.mutiny.pgclient.PgPool;
 import java.security.SecureRandom;
 import java.sql.Connection;
@@ -32,7 +34,15 @@ public class AccountDetailRepository {
 
     int totalAccounts = -1;
 
-    public AccountDetail findByAccountNo(String accountNo) {
+    @CacheResult(cacheName = "accounts")
+    public AccountDetail findByAccountNo(@CacheKey String accountNo) {
+        return doQuery(accountNo);
+    }
+
+    // seperate query logic into its own method
+    // then we can verify how many times it is called
+    // in unit test
+    public AccountDetail doQuery(String accountNo) {
         var count = getTotalAccounts();
         if (count <= 0) {
             return null;
