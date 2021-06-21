@@ -1,6 +1,7 @@
 quarkus.log.level=WARN
-quarkus.mongodb.credentials.username: dev
-quarkus.mongodb.credentials.password: dev
+quarkus.mongodb.credentials.username: kubeusr
+quarkus.mongodb.credentials.password: k8stest
 quarkus.mongodb.credentials.auth-mechanism: SCRAM-SHA-1
-quarkus.mongodb.credentials.auth-source: dev
-quarkus.mongodb.connection-string: mongodb://192.168.39.1:27017
+quarkus.mongodb.credentials.auth-source: testdb
+quarkus.mongodb.connection-string: mongodb://172.29.100.3:27017
+app.database=testdb
