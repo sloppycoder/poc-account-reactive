@@ -30,6 +30,9 @@ public class AccountDetailRepository {
         if ("random".equalsIgnoreCase(accountNo)) {
             return getTotalAccounts()
                 .onItem().transformToUni(n -> {
+                    if (n <=0) {
+                        return Uni.createFrom().item(null);
+                    }
                     return queryAccount("id = $1", Tuple.of(random.nextInt(n)));
                 });
         }
