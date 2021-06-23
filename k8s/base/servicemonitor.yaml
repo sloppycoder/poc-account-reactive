@@ -3,7 +3,7 @@ kind: ServiceMonitor
 metadata:
   name: accounts
   labels:
-    target: prometheus
+    release: prometheus
 spec:
   selector:
     matchLabels:
