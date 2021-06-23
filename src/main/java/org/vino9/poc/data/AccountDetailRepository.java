@@ -37,7 +37,7 @@ public class AccountDetailRepository {
 
     int totalAccounts = -1;
 
-    @Timed(value = "app.db.query.duration", histogram = true, extraTags = {"query", "account_detail"})
+    @Timed(value = "app.db.query.duration", longTask = true, extraTags = {"query", "account_detail"})
     public AccountDetail findByAccountNo(String accountNo) {
         var count = getTotalAccounts();
         if (count <= 0) {
@@ -64,7 +64,6 @@ public class AccountDetailRepository {
                 statement.setString(1, accountNo);
             }
 
-            var start = System.currentTimeMillis();
             resultset = statement.executeQuery();
 
             if (resultset.next()) {
