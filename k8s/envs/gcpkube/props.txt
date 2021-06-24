@@ -2,3 +2,4 @@ quarkus.datasource.reactive.url=postgresql://hippo.pgo.svc.cluster.local:5432/hi
 quarkus.datasource.jdbc.url=jdbc:postgresql://hippo.pgo.svc.cluster.local:5432/hippo
 quarkus.datasource.username=testuser
 quarkus.datasource.password=DUMMY
+quarkus.cache.enabled=false
