@@ -2,7 +2,6 @@ package org.vino9.poc.data;
 
 import io.quarkus.cache.CacheKey;
 import io.quarkus.cache.CacheResult;
-import io.vertx.mutiny.pgclient.PgPool;
 import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,9 +22,6 @@ public class AccountDetailRepository {
 
     @Inject
     Logger log;
-
-    @Inject
-    PgPool client;
 
     @Inject
     DataSource dataSource;
