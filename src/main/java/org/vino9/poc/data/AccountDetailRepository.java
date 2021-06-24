@@ -1,8 +1,7 @@
 package org.vino9.poc.data;
 
-import io.micrometer.core.annotation.Timed;
-import io.micrometer.core.instrument.MeterRegistry;
-import io.vertx.mutiny.pgclient.PgPool;
+import io.quarkus.cache.CacheKey;
+import io.quarkus.cache.CacheResult;
 import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,20 +24,21 @@ public class AccountDetailRepository {
     Logger log;
 
     @Inject
-    PgPool client;
-
-    @Inject
     DataSource dataSource;
-
-    @Inject
-    MeterRegistry registry;
 
     SecureRandom random = new SecureRandom();
 
     int totalAccounts = -1;
 
-    @Timed(value = "app.db.query.duration", longTask = true, extraTags = {"query", "account_detail"})
-    public AccountDetail findByAccountNo(String accountNo) {
+    @CacheResult(cacheName = "accounts")
+    public AccountDetail findByAccountNo(@CacheKey String accountNo) {
+        return doQuery(accountNo);
+    }
+
+    // seperate query logic into its own method
+    // then we can verify how many times it is called
+    // in unit test
+    public AccountDetail doQuery(String accountNo) {
         var count = getTotalAccounts();
         if (count <= 0) {
             return null;
@@ -63,9 +63,7 @@ public class AccountDetailRepository {
             } else {
                 statement.setString(1, accountNo);
             }
-
             resultset = statement.executeQuery();
-
             if (resultset.next()) {
                 return RowToModelMapper.rowToAccountDetail(resultset);
             }
