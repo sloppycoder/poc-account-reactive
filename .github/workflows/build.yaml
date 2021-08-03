@@ -58,4 +58,5 @@ jobs:
           -Dquarkus.container-image.registry=${{ env.REGISTRY }}
           -Dquarkus.container-image.name=${{ env.IMAGE_NAME }}
           -Dquarkus.container-image.tag=test
+          -Dquarkus.jib.base-jvm-image=ghcr.io/sloppycoder/poc-account-reactive
           -Dquarkus.jib.platforms=linux/amd64,linux/aarch64
