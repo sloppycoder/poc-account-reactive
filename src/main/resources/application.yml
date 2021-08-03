@@ -17,6 +17,8 @@ quarkus:
       format: "%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n"
   jacoco:
     excludes: "**/model/*.class"
+  jib:
+    base-jvm-image: adoptopenjdk/11-jre
   shutdown:
     timeout: 30
   http:
