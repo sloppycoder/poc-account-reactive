@@ -61,3 +61,4 @@ jobs:
           -Dquarkus.container-image.name=${{ env.IMAGE_NAME }}
           -Dquarkus.container-image.tag=test
           -Dquarkus.jib.platforms=linux/amd64,linux/aarch64
+          -Dquarkus.jib.base-jvm-image=adoptopenjdk/openjdk11
