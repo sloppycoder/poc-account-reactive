@@ -36,13 +36,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@v1
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Extract metadata (tags, labels) for Docker
         uses: docker/metadata-action@v3
         with:
@@ -62,8 +55,5 @@ jobs:
         run: >
           $MVN package -DskipTests
           -Dquarkus.container-image.push=true
-          -Dquarkus.container-image.registry=${{ env.REGISTRY }}
-          -Dquarkus.container-image.name=${{ env.IMAGE_NAME }}
-          -Dquarkus.container-image.tag=test
-          -Dquarkus.jib.base-jvm-image=openjdk:11-jre-slim-buster
+          -Dquarkus.container-image.image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:test
           -Dquarkus.jib.platforms=linux/amd64,linux/aarch64
