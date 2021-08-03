@@ -54,6 +54,8 @@ jobs:
       - name: Build and push image using JIB
         run: >
           $MVN package -DskipTests
+          -Dquarkus.container-image.group=${{ github.actor }}
           -Dquarkus.container-image.push=true
-          -Dquarkus.container-image.image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:test
+          -Dquarkus.container-image.tag=latest
+          -Dquarkus.container-image.additional-tags=this,that
           -Dquarkus.jib.platforms=linux/amd64,linux/aarch64
