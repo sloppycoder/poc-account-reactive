@@ -52,6 +52,10 @@ jobs:
       - name: Build and Unit Test
         run: $MVN clean test
 
+      - name: Extract tag or branch name
+        id: get_tag
+        run: echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
+
       - name: Build and push image using JIB
         run: >
           $MVN package -DskipTests
@@ -59,6 +63,6 @@ jobs:
           -Dquarkus.container-image.group=${{ github.actor }}
           -Dquarkus.container-image.name=poc-account-reactive
           -Dquarkus.container-image.push=${{ github.event_name != 'pull_request' }}
-          -Dquarkus.container-image.tag=${{ github.ref }}
+          -Dquarkus.container-image.tag=${{ steps.get_tag.outputs.TAG }}
           -Dquarkus.container-image.additional-tags=${{ github.sha }}
           -Dquarkus.jib.platforms=linux/amd64,linux/aarch64
