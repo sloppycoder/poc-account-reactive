@@ -13,14 +13,14 @@ import org.junit.jupiter.api.Test;
     3. swagger UI
  */
 @QuarkusTest
-public class InfraTest {
+class InfraTest {
 
     @Test
     void swagger_ui_is_available() {
         // @formatter:off
         given()
             .when()
-                .get("/swagger-ui")
+                .get("/q/swagger-ui")
             .then()
                 .statusCode(200)
                 .body(containsString("Swagger"));
