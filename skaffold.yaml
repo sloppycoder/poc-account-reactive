@@ -4,7 +4,7 @@ metadata:
   name: accounts-reactive
 build:
   artifacts:
-    - image: gcr.io/vino9-276317/accounts
+    - image: ghcr.io/sloppycoder/poc-account-reactive
       custom:
         buildCommand: ./build.sh
         dependencies:
