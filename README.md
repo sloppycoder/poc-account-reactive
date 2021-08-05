@@ -1,6 +1,7 @@
 # accounts-reactive project
 
 [![Build a container image and publish to GitHub package](https://github.com/sloppycoder/poc-account-reactive/actions/workflows/build.yaml/badge.svg?branch=master)](https://github.com/sloppycoder/poc-account-reactive/actions/workflows/build.yaml)
+
 A reactive RESTful API built with [Quarkus](https://quarkus.io).
 
 ## Quick Start
