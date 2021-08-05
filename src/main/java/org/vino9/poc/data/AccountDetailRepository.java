@@ -2,13 +2,13 @@ package org.vino9.poc.data;
 
 import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.pgclient.PgPool;
+import io.vertx.mutiny.sqlclient.Row;
 import io.vertx.mutiny.sqlclient.RowSet;
 import io.vertx.mutiny.sqlclient.Tuple;
 import java.security.SecureRandom;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.jboss.logging.Logger;
-import org.vino9.poc.mapper.RowToModelMapper;
 import org.vino9.poc.model.AccountDetail;
 
 @ApplicationScoped
@@ -30,7 +30,7 @@ public class AccountDetailRepository {
         if ("random".equalsIgnoreCase(accountNo)) {
             return getTotalAccounts()
                 .onItem().transformToUni(n -> {
-                    if (n <=0) {
+                    if (n <= 0) {
                         return Uni.createFrom().item(null);
                     }
                     return queryAccount("id = $1", Tuple.of(random.nextInt(n)));
@@ -61,5 +61,20 @@ public class AccountDetailRepository {
                 iterator -> iterator.hasNext()
                     ? iterator.next().getInteger(0)
                     : -1);
+    }
+
+    public static class RowToModelMapper {
+
+        public static AccountDetail rowToAccountDetail(Row row) {
+            var account = new AccountDetail();
+            account.setAccountNo(row.getString(0));
+            account.setCurrency(row.getString(1));
+            account.setCountry(row.getString(2));
+            account.setBranchCode(row.getString(3));
+            return account;
+        }
+
+        private RowToModelMapper() {
+        }
     }
 }
